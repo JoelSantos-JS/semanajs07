@@ -1,15 +1,39 @@
+import Camera from "../../../lib/shared/camera.js"
+import { supportWorkerType } from "../../../lib/shared/util.js"
+import Controller from "./controller.js"
+import Service from "./service.js"
+import View from "./view.js"
 
+
+ async function getWorker() {
+    if(supportWorkerType()) {
+        console.log('suporta')
+        const worker = new Worker('./src/worker.js', {type : 'module'})
+        return worker
+    }
+
+    const workerMock = {
+        async postMessage() {},
+        onmessage(msg) {}
+    }
+    console.log(' nao suporta')
+
+    return workerMock
+}
+
+const worker = await getWorker()
+
+console.log({worker})
+
+const camera = await Camera.init()
 const [rootPath] = window.location.href.split('/pages/')
-
-
 const factory = {
   async initalize() {
-    return CardsController.initialize({
+    return Controller.initialize({
       
-      view: new CardsView(),
-      service: new CardsService({ 
-        dbUrl: `${rootPath}/assets/database.json`,
-        cardListWorker
+      view: new View({}),
+      service: new Service({ 
+        
        })
     })
   }
