@@ -5,7 +5,7 @@ const ScrollUp = new GestureDescription('scroll-up'); // 🖐
 
 
   
-// Rock
+// SCROLL DOWN
 // -----------------------------------------------------------------------------
   
 // thumb: half curled
