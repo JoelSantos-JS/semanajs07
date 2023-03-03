@@ -5,11 +5,12 @@ export default class Controller {
       #worker
       #blinkCounter = 0
       #camera
-    constructor({view ,  worker, camera }) {
+    constructor({view ,  worker, camera , videoUrl}) {
       this.#view = view
       this.#camera = camera
       this.#worker = this.#configureWorker(worker)
       this.#view.configureOnBntClick(this.onBtnStart.bind(this))
+      this.#view.setVideoSrc(videoUrl)
     }
 
 

@@ -50,6 +50,7 @@ worker.postMessage('hey friend')
 
 const camera = await Camera.init()
 const [rootPath] = window.location.href.split('/pages/')
+console.log('rootPath' , rootPath)
 const factory = {
   async initalize() {
     return Controller.initialize({
@@ -57,7 +58,8 @@ const factory = {
       view: new View(),
     
       worker,
-      camera
+      camera,
+      videoUrl: `${rootPath}/assets/video.mp4`
     })
   }
 }
