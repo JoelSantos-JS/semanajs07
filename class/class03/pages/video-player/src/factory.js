@@ -45,8 +45,12 @@ import View from "./view.js"
     return workerMock
 }
 
+const view = new View()
+view.setVideoSrc(  `${rootPath}/assets/video.mp4`)
+
 const worker = await getWorker()
 worker.postMessage('hey friend')
+
 
 const camera = await Camera.init()
 const [rootPath] = window.location.href.split('/pages/')
@@ -59,7 +63,7 @@ const factory = {
     
       worker,
       camera,
-      videoUrl: `${rootPath}/assets/video.mp4`
+     
     })
   }
 }
